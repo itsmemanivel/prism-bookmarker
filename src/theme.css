@@ -1,0 +1,7 @@
+:root { --bg: #15171b; --panel: #1b1e24; --card: #1e2127; --card-foot: #23262d; --line: #2b2f37; --ink: #e8e9ec; --muted: #9499a3; --hover: #24272e; --active: #2b2f37; --btn-bg: #e8e9ec; --btn-ink: #15171b; color-scheme: dark;
+  font-family: "Inter", "Segoe UI", system-ui, sans-serif; color: var(--ink); font-synthesis: none; -webkit-font-smoothing: antialiased; }
+:root[data-theme="light"] { --bg: #fcfcfd; --panel: #fff; --card: #fff; --card-foot: #fbfbfc; --line: #e9e9ec; --ink: #1b1b1f; --muted: #8b8b93; --hover: #f4f4f6; --active: #eeeef1; --btn-bg: #1b1b1f; --btn-ink: #fff; color-scheme: light; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); }
+button, input, select { font: inherit; }
+button { cursor: pointer; }

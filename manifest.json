@@ -10,13 +10,11 @@
     "128": "icons/icon-128.png"
   },
   "action": {
-    "default_title": "Prism Bookmarks"
-  },
-  "background": {
-    "service_worker": "src/background.ts",
-    "type": "module"
+    "default_title": "Prism Bookmarks",
+    "default_popup": "popup.html"
   },
   "permissions": [
-    "favicon"
+    "favicon",
+    "activeTab"
   ]
 }
