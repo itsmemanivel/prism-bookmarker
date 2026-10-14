@@ -38,6 +38,8 @@ The dev server runs the dashboard as a normal web page. Chrome extension APIs ar
 
 ## Build and install
 
+Stop the dev server first. Dev mode rewrites `dist/` with stubs that load from `localhost:5173`, which Manifest V3 blocks, leaving the extension blank.
+
 ```bash
 npm run build
 ```

@@ -73,6 +73,8 @@ Review usually takes a few days. The published version only changes once review 
 
 CI proves the extension compiles and is versioned correctly. It cannot tell you the interface works, so smoke-test anything user-visible first.
 
+Stop `npm run dev` before building. Dev mode rewrites `dist/` with stubs that load scripts from `localhost:5173`, and Manifest V3 blocks remote scripts, so an extension loaded from that folder shows a blank page with a `script-src 'self'` error in the console. Only a folder produced by `npm run build` is loadable.
+
 ```bash
 npm run build
 ```
