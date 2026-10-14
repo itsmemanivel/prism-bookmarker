@@ -1,12 +1,13 @@
 {
   "name": "prism---bookmarker",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
     "icons": "node scripts/generate-icons.mjs",
+    "version": "node scripts/sync-version.mjs && git add manifest.json",
     "package": "npm run build && node -e \"require('fs').rmSync('prism-bookmarks.zip',{force:true})\" && powershell -Command \"Compress-Archive -Path dist/* -DestinationPath prism-bookmarks.zip\"",
     "lint": "eslint .",
     "preview": "vite preview"

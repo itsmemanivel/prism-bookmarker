@@ -16,5 +16,7 @@
     "service_worker": "src/background.ts",
     "type": "module"
   },
-  "permissions": ["favicon"]
+  "permissions": [
+    "favicon"
+  ]
 }
