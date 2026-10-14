@@ -1,0 +1,41 @@
+name: Release
+
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - run: npm run build
+
+      - name: Verify manifest version matches the tag
+        run: |
+          tag="${GITHUB_REF_NAME#v}"
+          manifest=$(node -p "require('./dist/manifest.json').version")
+          if [ "$tag" != "$manifest" ]; then
+            echo "Tag $tag does not match manifest version $manifest"
+            exit 1
+          fi
+
+      # The npm package script uses PowerShell, so zip here instead.
+      - name: Package extension
+        run: cd dist && zip -qr ../prism-bookmarks.zip .
+
+      - name: Publish release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh release create "$GITHUB_REF_NAME" prism-bookmarks.zip --title "Prism Bookmarks ${GITHUB_REF_NAME#v}" --generate-notes

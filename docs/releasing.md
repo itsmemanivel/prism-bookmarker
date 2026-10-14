@@ -21,6 +21,15 @@ This is wired up through the npm `version` lifecycle script, which npm runs afte
 
 ## Release steps
 
+Pushing a `v*` tag triggers `.github/workflows/release.yml`, which builds the extension, checks the manifest version against the tag, and publishes a GitHub release with `prism-bookmarks.zip` attached. The normal release is therefore two commands:
+
+```bash
+npm version minor
+git push --follow-tags origin master
+```
+
+Then download the ZIP from the release page and upload it to the Web Store. The manual steps below are the same process by hand, for when you want to test a build locally first.
+
 ### 1. Bump the version
 
 Pick the part that matches the change:
@@ -65,6 +74,8 @@ git push --follow-tags origin master
 Use `--follow-tags`. A plain `git push` sends the commit but not the tag, which leaves the GitHub release pointing at nothing.
 
 ### 5. Create the GitHub release
+
+CI does this automatically when the tag is pushed. To do it by hand:
 
 ```bash
 gh release create v1.1.0 prism-bookmarks.zip --title "Prism Bookmarks 1.1.0" --generate-notes
